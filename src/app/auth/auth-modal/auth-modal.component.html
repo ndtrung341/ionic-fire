@@ -1,0 +1,115 @@
+<ion-content class="content">
+  <div class="container box">
+    <ion-grid class="wrapper">
+      @if (!isLogin) {
+      <form
+        [formGroup]="signupForm"
+        (ngSubmit)="onSignUp()"
+        class="form-container"
+      >
+        <ion-row class="form-control">
+          <ion-col size="12" class="form-control-header">
+            <h1>Sign Up</h1>
+          </ion-col>
+        </ion-row>
+        <ion-row class="form-control">
+          <ion-col size="12" class="form-control-input">
+            <ion-input
+              formControlName="fullName"
+              label="Full Name"
+              labelPlacement="floating"
+              fill="outline"
+              name="fullname"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row class="form-control">
+          <ion-col size="12" class="form-control-input">
+            <ion-input
+              formControlName="email"
+              label="E-Mail"
+              labelPlacement="floating"
+              fill="outline"
+              type="email"
+              name="email"
+              email
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row class="form-control">
+          <ion-col size="12" class="form-control-input">
+            <ion-input
+              formControlName="password"
+              label="Password"
+              labelPlacement="floating"
+              fill="outline"
+              type="password"
+              name="password"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row class="form-control">
+          <ion-col class="form-control-input">
+            <ion-button type="submit" expand="block" color="primary">
+              Sign up
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+      } @else {
+      <form
+        [formGroup]="signinForm"
+        (ngSubmit)="onSignIn()"
+        class="form-container"
+      >
+        <ion-row class="form-control">
+          <ion-col size="12" class="form-control-header">
+            <h1>Sign In</h1>
+          </ion-col>
+        </ion-row>
+        <ion-row class="form-control">
+          <ion-col size="12" class="form-control-input">
+            <ion-input
+              formControlName="email"
+              label="E-Mail"
+              labelPlacement="floating"
+              fill="outline"
+              type="email"
+              name="email"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row class="form-control">
+          <ion-col size="12" class="form-control-input">
+            <ion-input
+              formControlName="password"
+              label="Password"
+              labelPlacement="floating"
+              fill="outline"
+              type="password"
+              name="password"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row class="form-control">
+          <ion-col class="form-control-input">
+            <ion-button type="submit" expand="block" color="primary">
+              Sign in
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+      }
+    </ion-grid>
+
+    <div style="text-align: center">
+      <p *ngIf="isLogin" (click)="onSwitchAuthMode()">
+        Don't have an account? <span>Sign Up</span>
+      </p>
+      <p *ngIf="!isLogin" (click)="onSwitchAuthMode()">
+        Already have an account? <span>Sign In</span>
+      </p>
+      <p style="color: red" (click)="onCancel()">Back</p>
+    </div>
+  </div>
+</ion-content>

@@ -1,20 +1,37 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> {{useInfo?.role}} </ion-title>
+    @if((isAuthenticated$ | async)){
+    <ion-button slot="end" fill="outline" (click)="logout()">
+      Logout
+    </ion-button>
+    }
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">{{useInfo?.role}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    @if(useInfo?.role === 'admin'){
+    <ion-button (click)="joinNowClick()"> Tech 1 </ion-button>
+    <br />
+    <ion-button (click)="joinNowClick()"> Tech 2 </ion-button>
+
+    } @if(useInfo?.role === 'tech'){ } @if(useInfo?.role === 'user'){
+    <ion-button (click)="joinNowClick()"> Tech 1 </ion-button>
+    <br />
+    <ion-button (click)="joinNowClick()"> Tech 2 </ion-button>
+    }
   </div>
+
+  @if (!(isAuthenticated$ | async)) {
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-button (click)="joinNowClick()"> Join now </ion-button>
+  </ion-fab>
+  }
 </ion-content>
