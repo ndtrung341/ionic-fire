@@ -1,0 +1,7 @@
+{
+  "name": "ionic-fire",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
